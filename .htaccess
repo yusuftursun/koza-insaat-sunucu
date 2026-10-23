@@ -1,0 +1,23 @@
+﻿Options -MultiViews
+DirectoryIndex index.html
+AddDefaultCharset UTF-8
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Redirect /tr or /tr/... to root /...
+  RewriteRule ^tr/?$ / [R=301,L]
+  RewriteRule ^tr/(.*)$ / [R=301,L]
+
+  # Serve existing files or directories directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Serve directory index.html if matching folder exists
+  RewriteCond %{DOCUMENT_ROOT}//index.html -f
+  RewriteRule ^(.+?)/?$ /index.html [L]
+</IfModule>
+
+ErrorDocument 404 /404.html
