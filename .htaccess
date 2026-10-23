@@ -6,6 +6,9 @@ AddDefaultCharset UTF-8
   RewriteEngine On
   RewriteBase /
 
+  # Redirect favicon.ico to Koza icon.svg
+  RewriteRule ^favicon\.ico$ /icon.svg [L]
+
   # Redirect /tr or /tr/... to root /...
   RewriteRule ^tr/?$ / [R=301,L]
   RewriteRule ^tr/(.*)$ / [R=301,L]
